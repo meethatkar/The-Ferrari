@@ -66,10 +66,10 @@ function addPlanes() {
                 uIsCarousel: { value: isCarousel ? 1.0 : 0.0 },
                 uBounds: {
                     value: new THREE.Vector4(
-                        wrapperBounds.left,
-                        window.innerHeight - wrapperBounds.bottom,
-                        wrapperBounds.right,
-                        window.innerHeight - wrapperBounds.top
+                        wrapperBounds.left * renderer.getPixelRatio(),
+                        (window.innerHeight - wrapperBounds.bottom) * renderer.getPixelRatio(),
+                        wrapperBounds.right * renderer.getPixelRatio(),
+                        (window.innerHeight - wrapperBounds.top) * renderer.getPixelRatio()
                     )
                 },
                 uMouse: { value: new THREE.Vector2(0, 1) },
@@ -171,10 +171,10 @@ function updateImagePosition() {
             0
         );
         plane.material.uniforms.uBounds.value.set(
-            wrapperBounds.left,
-            window.innerHeight - wrapperBounds.bottom,
-            wrapperBounds.right,
-            window.innerHeight - wrapperBounds.top
+            wrapperBounds.left * renderer.getPixelRatio(),
+            (window.innerHeight - wrapperBounds.bottom) * renderer.getPixelRatio(),
+            wrapperBounds.right * renderer.getPixelRatio(),
+            (window.innerHeight - wrapperBounds.top) * renderer.getPixelRatio()
         );
     });
 }
