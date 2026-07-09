@@ -230,9 +230,11 @@ function animate() {
 }
 
 // --- BOOTSTRAP APP ---
-initLocomotiveScroll();
-initThree();
-addPlanes();
-initInteractions();
-initCarousel();
-animate();
+window.addEventListener('load', () => {
+    initLocomotiveScroll();
+    initThree();
+    addPlanes();
+    initInteractions();
+    initCarousel();
+    animate();
+});
