@@ -26,7 +26,7 @@ function initThree() {
     scene = new THREE.Scene();
     const distance = 5;
     const fov = 2 * Math.atan((window.innerHeight / 2) / distance) * (180 / Math.PI);
-    
+
     camera = new THREE.PerspectiveCamera(
         fov,
         window.innerWidth / window.innerHeight,
@@ -82,13 +82,13 @@ function addPlanes() {
 
         const geometry = new THREE.PlaneGeometry(imgBoundings.width, imgBoundings.height);
         const plane = new THREE.Mesh(geometry, material);
-        
+
         plane.position.set(
             imgBoundings.left - window.innerWidth / 2 + imgBoundings.width / 2,
             -imgBoundings.top + window.innerHeight / 2 - imgBoundings.height / 2,
             0
         );
-        
+
         planes.push(plane);
         scene.add(plane);
     });
@@ -164,7 +164,7 @@ function updateImagePosition() {
     planes.forEach((plane, index) => {
         const img = images[index];
         const imgBounding = img.getBoundingClientRect();
-        
+
         plane.position.set(
             imgBounding.left - window.innerWidth / 2 + imgBounding.width / 2,
             -imgBounding.top + window.innerHeight / 2 - imgBounding.height / 2,
@@ -190,20 +190,20 @@ function initCarousel() {
     const colorBtns = document.querySelectorAll('#clr-btns span');
     const prevBtn = document.querySelectorAll('.btns')[0];
     const nextBtn = document.querySelectorAll('.btns')[1];
-    
+
     let currentIndex = 0;
-    
+
     function goToSlide(index) {
-        if(index < 0) index = slides.length - 1;
-        if(index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
         currentIndex = index;
-        
+
         gsap.to(slides, {
             xPercent: -100 * currentIndex,
             duration: 1,
             ease: "power3.inOut"
         });
-        
+
         colorBtns.forEach((btn, i) => {
             if (i === currentIndex) {
                 gsap.to(btn, { scale: 1.2, duration: 0.3, ease: "power2.out" });
@@ -212,14 +212,14 @@ function initCarousel() {
             }
         });
     }
-    
+
     nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
     prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    
+
     colorBtns.forEach((btn, i) => {
         btn.addEventListener('click', () => goToSlide(i));
     });
-    
+
     goToSlide(0);
 }
 
