@@ -95,9 +95,9 @@ function addPlanes() {
 }
 
 function initInteractions() {
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    function handleInteraction(clientX, clientY) {
+        mouse.x = (clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(clientY / window.innerHeight) * 2 + 1;
 
         raycaster.setFromCamera(mouse, camera);
 
@@ -123,6 +123,38 @@ function initInteractions() {
                 });
             }
         });
+    }
+
+    function resetHover() {
+        planes.forEach(plane => {
+            gsap.to(plane.material.uniforms.uHover, {
+                value: 0.0,
+                duration: 0.6,
+                ease: "power3.out"
+            });
+        });
+    }
+
+    // Mouse Events
+    window.addEventListener('mousemove', (event) => {
+        handleInteraction(event.clientX, event.clientY);
+    });
+
+    // Touch Events
+    window.addEventListener('touchstart', (event) => {
+        if (event.touches.length > 0) {
+            handleInteraction(event.touches[0].clientX, event.touches[0].clientY);
+        }
+    });
+
+    window.addEventListener('touchmove', (event) => {
+        if (event.touches.length > 0) {
+            handleInteraction(event.touches[0].clientX, event.touches[0].clientY);
+        }
+    });
+
+    window.addEventListener('touchend', () => {
+        resetHover();
     });
 }
 
