@@ -14,11 +14,11 @@
 
 <body>
   <main data-scroll-container class="w-full relative">
-    <header class="w-full px-12 py-6 absolute top-0 z-10 left-0 flex items-center justify-between font-elms">
-      <h1 class="font-bebas text-4xl tracking-wider text-gray-100">
+    <header class="w-full px-6 md:px-12 py-4 md:py-6 absolute top-0 z-10 left-0 flex items-center justify-between font-elms">
+      <h1 class="font-bebas text-3xl md:text-4xl tracking-wider text-gray-100">
         SUPE-CAR
       </h1>
-      <div id="nav-links" class="uppercase text-sm font-semibold tracking-widest flex gap-10 text-gray-800">
+      <div id="nav-links" class="uppercase text-sm font-semibold tracking-widest hidden md:flex gap-10 text-gray-800">
         <span class="cursor-pointer hover:text-red-600 transition-colors">
           specs
         </span>
@@ -32,18 +32,18 @@
           contact
         </span>
       </div>
-      <button class="bg-black/90 hover:bg-black px-6 py-3 rounded-2xl text-white font-semibold text-sm tracking-widest">
+      <button class="bg-black/90 hover:bg-black px-4 md:px-6 py-2 md:py-3 rounded-2xl text-white font-semibold text-xs md:text-sm tracking-widest">
         BOOK DEMO
       </button>
     </header>
     <div id="hero" class="relative w-full h-screen">
-      <img src="/colorsCar/red.png" alt="" class="w-full object-cover h-[85vh] object-bottom" />
-      <h1 class="absolute bottom-[2.5%] left-0 text-center text-[16vh] w-full font-bold font-uncial whitespace-nowrap">
+      <img src="/colorsCar/red.png" alt="" class="w-full object-cover h-[70vh] md:h-[85vh] object-bottom" />
+      <h1 class="absolute bottom-[5%] md:bottom-[2.5%] left-0 text-center text-7xl md:text-[16vh] w-full font-bold font-uncial whitespace-normal md:whitespace-nowrap px-4">
         THE FERRARI 360
       </h1>
     </div>
-    <div id="description" class="w-full text-center px-8 py-32 bg-gray-50">
-      <p class="w-10/12 md:w-8/12 mx-auto text-2xl md:text-3xl font-elms text-gray-700 leading-relaxed font-light">
+    <div id="description" class="w-full text-center px-6 md:px-8 py-20 md:py-32 bg-gray-50">
+      <p class="w-11/12 md:w-8/12 mx-auto text-xl md:text-3xl font-elms text-gray-700 leading-relaxed font-light">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
         cupiditate, earum optio placeat veritatis iusto maiores natus tempore,
         repudiandae autem, magni saepe quaerat soluta adipisci nemo quisquam
@@ -52,69 +52,69 @@
         aliquam aut!
       </p>
     </div>
-    <div id="specs" class="px-8 py-24 w-full max-w-7xl mx-auto flex flex-col gap-32">
-      <div class="wrapper w-full h-[45vh] flex items-center justify-between gap-16">
-        <div class="left img w-1/2 h-full">
+    <div id="specs" class="px-6 md:px-8 py-16 md:py-24 w-full max-w-7xl mx-auto flex flex-col gap-20 md:gap-32">
+      <div class="wrapper w-full min-h-[45vh] flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+        <div class="left img w-full md:w-1/2 h-[35vh] md:h-full">
           <img src="/components/structure.webp" alt="" class="w-full h-full object-contain drop-shadow-md" />
         </div>
-        <div class="right txt w-1/2 text-left flex flex-col justify-center gap-6">
-          <h2 class="text-7xl font-bebas tracking-wide text-gray-900">
+        <div class="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
+          <h2 class="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">
             The Structure
           </h2>
-          <p class="text-2xl font-elms text-gray-600 leading-relaxed font-light">
+          <p class="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
             tenetur voluptatibus praesentium nisi dolorum saepe?
           </p>
         </div>
       </div>
-      <div class="wrapper w-full h-[45vh] flex flex-row-reverse items-center justify-between gap-16">
-        <div class="left img w-1/2 h-full">
+      <div class="wrapper w-full min-h-[45vh] flex flex-col md:flex-row-reverse items-center justify-between gap-8 md:gap-16">
+        <div class="left img w-full md:w-1/2 h-[35vh] md:h-full">
           <img src="/components/oiling.jpg" alt="" class="w-full h-full object-contain drop-shadow-md" />
         </div>
-        <div class="right txt w-1/2 text-left flex flex-col justify-center gap-6">
-          <h2 class="text-7xl font-bebas tracking-wide text-gray-900">
+        <div class="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
+          <h2 class="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">
             The Oiling
           </h2>
-          <p class="text-2xl font-elms text-gray-600 leading-relaxed font-light">
+          <p class="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
             tenetur voluptatibus praesentium nisi dolorum saepe?
           </p>
         </div>
       </div>
-      <div class="wrapper w-full h-[45vh] flex items-center justify-between gap-16">
-        <div class="left img w-1/2 h-full">
+      <div class="wrapper w-full min-h-[45vh] flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+        <div class="left img w-full md:w-1/2 h-[35vh] md:h-full">
           <img src="/components/exhaust.webp" alt="" class="w-full h-full object-contain drop-shadow-md" />
         </div>
-        <div class="right txt w-1/2 text-left flex flex-col justify-center gap-6">
-          <h2 class="text-7xl font-bebas tracking-wide text-gray-900">
+        <div class="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
+          <h2 class="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">
             The Exhaust
           </h2>
-          <p class="text-2xl font-elms text-gray-600 leading-relaxed font-light">
+          <p class="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
             tenetur voluptatibus praesentium nisi dolorum saepe?
           </p>
         </div>
       </div>
-      <div class="wrapper w-full h-[45vh] flex flex-row-reverse items-center justify-between gap-16">
-        <div class="left img w-1/2 h-full">
+      <div class="wrapper w-full min-h-[45vh] flex flex-col md:flex-row-reverse items-center justify-between gap-8 md:gap-16">
+        <div class="left img w-full md:w-1/2 h-[35vh] md:h-full">
           <img src="/components/wheel.png" alt="" class="w-full h-full object-contain drop-shadow-md" />
         </div>
-        <div class="right txt w-1/2 text-left flex flex-col justify-center gap-6">
-          <h2 class="text-7xl font-bebas tracking-wide text-gray-900">
+        <div class="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
+          <h2 class="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">
             The Wheels
           </h2>
-          <p class="text-2xl font-elms text-gray-600 leading-relaxed font-light">
+          <p class="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
             tenetur voluptatibus praesentium nisi dolorum saepe?
           </p>
         </div>
       </div>
     </div>
-    <div id="car-carousel" class="min-h-screen py-24 relative flex flex-col items-center justify-center z-0">
-      <h2 class="text-6xl font-bebas text-gray-900 mb-16 tracking-wide uppercase">
+    <div id="car-carousel" class="min-h-screen py-16 md:py-24 relative flex flex-col items-center justify-center z-0">
+      <h2 class="text-4xl md:text-6xl font-bebas text-gray-900 mb-8 md:mb-16 tracking-wide uppercase">
         Select Your Finish
       </h2>
-      <div id="carsoule-wrapper" class="w-8/12 h-[50vh] md:h-[60vh] mx-auto flex items-center relative z-10">
+      <div id="carsoule-wrapper" class="w-11/12 md:w-8/12 h-[40vh] md:h-[60vh] mx-auto flex items-center relative z-10">
         <div class="carsouel w-full h-full shrink-0">
           <img src="/colorsCar/red.png" alt="" class="w-full h-full object-contain" />
         </div>
@@ -130,18 +130,18 @@
         <div class="carsouel w-full h-full shrink-0">
           <img src="/colorsCar/black.png" alt="" class="w-full h-full object-contain" />
         </div>
-        <div class="btns absolute z-10 top-1/2 left-[5%] scale-200 text-white">
+        <div class="btns absolute z-10 top-1/2 left-[2%] md:left-[5%] scale-150 md:scale-200 text-white cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-caret-left-square" viewBox="0 0 16 16">
+            class="bi bi-caret-left-square drop-shadow-md" viewBox="0 0 16 16">
             <path
               d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
             <path
               d="M10.205 12.456A.5.5 0 0 0 10.5 12V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4a.5.5 0 0 0 .537.082" />
           </svg>
         </div>
-        <div class="btns absolute z-10 top-1/2 right-[5%] -scale-x-200 scale-y-200 text-white">
+        <div class="btns absolute z-10 top-1/2 right-[2%] md:right-[5%] -scale-x-150 scale-y-150 md:-scale-x-200 md:scale-y-200 text-white cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-caret-left-square" viewBox="0 0 16 16">
+            class="bi bi-caret-left-square drop-shadow-md" viewBox="0 0 16 16">
             <path
               d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
             <path
@@ -149,12 +149,12 @@
           </svg>
         </div>
       </div>
-      <div id="clr-btns" class="flex w-fit items-center gap-6 mt-16">
-        <span class="w-14 h-14 rounded-full bg-red-500 cursor-pointer border-4 border-white"></span>
-        <span class="w-14 h-14 rounded-full bg-green-500 cursor-pointer border-4 border-white"></span>
-        <span class="w-14 h-14 rounded-full bg-orange-500 cursor-pointer border-4 border-white"></span>
-        <span class="w-14 h-14 rounded-full bg-blue-500 cursor-pointer border-4 border-white"></span>
-        <span class="w-14 h-14 rounded-full bg-gray-900 cursor-pointer border-4 border-white"></span>
+      <div id="clr-btns" class="flex flex-wrap justify-center w-fit items-center gap-4 md:gap-6 mt-12 md:mt-16 px-4">
+        <span class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-red-500 cursor-pointer border-2 md:border-4 border-white"></span>
+        <span class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-green-500 cursor-pointer border-2 md:border-4 border-white"></span>
+        <span class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-orange-500 cursor-pointer border-2 md:border-4 border-white"></span>
+        <span class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-blue-500 cursor-pointer border-2 md:border-4 border-white"></span>
+        <span class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gray-900 cursor-pointer border-2 md:border-4 border-white"></span>
       </div>
     </div>
   </main>
