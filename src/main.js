@@ -5,18 +5,21 @@ import * as THREE from 'three';
 import vertexShader from './shaders/vertexShader.glsl?raw';
 import fragmentShader from './shaders/fragmentShader.glsl?raw';
 import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
+gsap.registerPlugin(ScrollToPlugin);
 
 // --- STATE & GLOBALS ---
 let scene, camera, renderer;
 let planes = [];
 let images = [];
 let wrapper, wrapperBounds;
+let locoScroll;
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 function initLocomotiveScroll() {
-    new LocomotiveScroll({
+    locoScroll = new LocomotiveScroll({
         el: document.querySelector('main'),
         smooth: true
     });
@@ -229,6 +232,22 @@ function animate() {
     renderer.render(scene, camera);
 }
 
+function initNavigation() {
+    const navLinks = document.querySelectorAll('#nav-links > span');
+    
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            const target = link.getAttribute('data-target');
+            if (target) {
+                gsap.to(window, { duration: 1, scrollTo: target, ease: "power3.inOut" });
+                if (locoScroll) {
+                    locoScroll.scrollTo(target);
+                }
+            }
+        });
+    });
+}
+
 // --- BOOTSTRAP APP ---
 window.addEventListener('load', () => {
     initLocomotiveScroll();
@@ -236,5 +255,6 @@ window.addEventListener('load', () => {
     addPlanes();
     initInteractions();
     initCarousel();
+    initNavigation();
     animate();
 });
