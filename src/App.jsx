@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 import * as THREE from 'three';
@@ -7,10 +7,14 @@ import fragmentShader from './shaders/fragmentShader.glsl?raw';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import './style.css';
+import SpecsSection from './components/SpecsSection';
+import CarouselSection from './components/CarouselSection';
+import Loader from './components/Loader';
 
 gsap.registerPlugin(ScrollToPlugin);
 
 export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const mainRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -329,6 +333,7 @@ export default function App() {
 
   return (
     <>
+      {!isLoaded && <Loader setIsLoaded={setIsLoaded} />}
       <main ref={mainRef} data-scroll-container className="w-full relative">
         <header className="w-full px-6 md:px-12 py-4 md:py-6 absolute top-0 z-10 left-0 flex items-center justify-between font-elms">
           <h1 className="font-bebas text-3xl md:text-4xl tracking-wider text-gray-100">
@@ -367,91 +372,8 @@ export default function App() {
             The Ferrari 360, introduced in 1999, marked a revolutionary leap with its all-aluminum chassis. Powered by a mid-mounted 3.6-liter V8 engine producing 395 horsepower, this Pininfarina-designed masterpiece delivered thrilling performance and ushered the iconic brand into the 21st century.
           </p>
         </div>
-        <div id="specs" className="px-6 md:px-8 py-16 md:py-24 w-full max-w-7xl mx-auto flex flex-col gap-20 md:gap-32">
-          <div className="wrapper w-full min-h-[45vh] flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-            <div className="left img w-full md:w-1/2 h-[35vh] md:h-full">
-              <img src="/components/structure.webp" alt="Ferrari 360 structure" loading="lazy" decoding="async" className="w-full h-full object-contain drop-shadow-md" />
-            </div>
-            <div className="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
-              <h2 className="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">The Structure</h2>
-              <p className="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
-                Developed with Alcoa, the 360's space-frame chassis is entirely aluminum, making it 40% stiffer and 28% lighter than its predecessor.
-              </p>
-            </div>
-          </div>
-          <div className="wrapper w-full min-h-[45vh] flex flex-col md:flex-row-reverse items-center justify-between gap-8 md:gap-16">
-            <div className="left img w-full md:w-1/2 h-[35vh] md:h-full">
-              <img src="/components/engine.webp" alt="Ferrari 360 engine" loading="lazy" decoding="async" className="w-full h-full object-contain drop-shadow-md" />
-            </div>
-            <div className="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
-              <h2 className="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">The Engine</h2>
-              <p className="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
-                At its core lies a naturally aspirated 3.6-liter V8 engine, delivering 395 horsepower and an exhilarating 8,500 rpm redline.
-              </p>
-            </div>
-          </div>
-          <div className="wrapper w-full min-h-[45vh] flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-            <div className="left img w-full md:w-1/2 h-[35vh] md:h-full">
-              <img src="/components/exhaust.webp" alt="Ferrari 360 exhaust" loading="lazy" decoding="async" className="w-full h-full object-contain drop-shadow-md" />
-            </div>
-            <div className="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
-              <h2 className="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">The Exhaust</h2>
-              <p className="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
-                The variable back-pressure exhaust valves open at high RPMs, bypassing the silencers to unleash the iconic, high-pitched Ferrari V8 scream.
-              </p>
-            </div>
-          </div>
-          <div className="wrapper w-full min-h-[45vh] flex flex-col md:flex-row-reverse items-center justify-between gap-8 md:gap-16">
-            <div className="left img w-full md:w-1/2 h-[35vh] md:h-full">
-              <img src="/components/wheel.webp" alt="Ferrari 360 wheel" loading="lazy" decoding="async" className="w-full h-full object-contain drop-shadow-md" />
-            </div>
-            <div className="right txt w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-4 md:gap-6">
-              <h2 className="text-5xl md:text-7xl font-bebas tracking-wide text-gray-900">The Wheels</h2>
-              <p className="text-lg md:text-2xl font-elms text-gray-600 leading-relaxed font-light">
-                Equipped with 18-inch five-spoke alloy wheels, the 360 houses robust Brembo ventilated disc brakes for exceptional stopping power and control.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div id="car-carousel" className="min-h-screen py-16 md:py-24 relative flex flex-col items-center justify-center z-0">
-          <h2 className="text-4xl md:text-6xl font-bebas text-gray-900 mb-8 md:mb-16 tracking-wide uppercase">Select Your Finish</h2>
-          <div id="carsoule-wrapper" className="w-11/12 md:w-8/12 h-[40vh] md:h-[60vh] mx-auto flex items-center relative z-10 overflow-hidden">
-            <div className="carsouel w-full h-full shrink-0">
-              <img src="/colorsCar/red.webp" alt="Ferrari 360 red" loading="eager" decoding="async" className="w-full h-full object-contain" />
-            </div>
-            <div className="carsouel w-full h-full shrink-0">
-              <img src="/colorsCar/green.webp" alt="Ferrari 360 green" loading="lazy" decoding="async" className="w-full h-full object-contain" />
-            </div>
-            <div className="carsouel w-full h-full shrink-0">
-              <img src="/colorsCar/orange.webp" alt="Ferrari 360 orange" loading="lazy" decoding="async" className="w-full h-full object-contain" />
-            </div>
-            <div className="carsouel w-full h-full shrink-0">
-              <img src="/colorsCar/blue.webp" alt="Ferrari 360 blue" loading="lazy" decoding="async" className="w-full h-full object-contain" />
-            </div>
-            <div className="carsouel w-full h-full shrink-0">
-              <img src="/colorsCar/black.webp" alt="Ferrari 360 black" loading="lazy" decoding="async" className="w-full h-full object-contain" />
-            </div>
-            <div className="btns absolute z-10 top-1/2 left-[2%] md:left-[5%] scale-150 md:scale-200 text-black md:text-white cursor-pointer mix-blend-difference">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-square drop-shadow-md" viewBox="0 0 16 16">
-                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                <path d="M10.205 12.456A.5.5 0 0 0 10.5 12V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4a.5.5 0 0 0 .537.082" />
-              </svg>
-            </div>
-            <div className="btns absolute z-10 top-1/2 right-[2%] md:right-[5%] -scale-x-150 scale-y-150 md:-scale-x-200 md:scale-y-200 text-black md:text-white cursor-pointer mix-blend-difference">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-square drop-shadow-md" viewBox="0 0 16 16">
-                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                <path d="M10.205 12.456A.5.5 0 0 0 10.5 12V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4a.5.5 0 0 0 .537.082" />
-              </svg>
-            </div>
-          </div>
-          <div id="clr-btns" className="flex flex-wrap justify-center w-fit items-center gap-4 md:gap-6 mt-12 md:mt-16 px-4">
-            <span className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-red-500 cursor-pointer border-2 md:border-4 border-white"></span>
-            <span className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-green-500 cursor-pointer border-2 md:border-4 border-white"></span>
-            <span className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-orange-500 cursor-pointer border-2 md:border-4 border-white"></span>
-            <span className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-blue-500 cursor-pointer border-2 md:border-4 border-white"></span>
-            <span className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gray-900 cursor-pointer border-2 md:border-4 border-white"></span>
-          </div>
-        </div>
+        <SpecsSection />
+        <CarouselSection />
         <footer id="footer" className="w-full h-[30vh]">
           <img src="/footer.webp" alt="The FERRARI 360" loading="lazy" decoding="async" className="w-full h-full object-cover" />
         </footer>
