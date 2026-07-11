@@ -10,6 +10,7 @@ import './style.css';
 import SpecsSection from './components/SpecsSection';
 import CarouselSection from './components/CarouselSection';
 import Loader from './components/Loader';
+import Navbar from './components/Navbar';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -342,32 +343,7 @@ export default function App() {
     <>
       {!isLoaded && <Loader setIsLoaded={setIsLoaded} />}
       <main ref={mainRef} data-scroll-container className="w-full relative">
-        <header className="w-full px-6 md:px-12 py-4 md:py-6 absolute top-0 z-10 left-0 flex items-center justify-between font-elms">
-          <h1 className="font-bebas text-3xl md:text-4xl tracking-wider text-gray-100">
-            SUPE-CAR
-          </h1>
-          <div id="nav-links" className="uppercase text-base font-semibold tracking-widest hidden md:flex gap-10 text-gray-800">
-            <span data-target="#specs" className="group relative cursor-pointer overflow-hidden h-[1.2em] flex flex-col">
-              <span className="block transition-transform duration-500 ease-in-out group-hover:-translate-y-full">specs</span>
-              <span className="block absolute top-full left-0 text-red-600 transition-transform duration-500 ease-in-out group-hover:-translate-y-full">specs</span>
-            </span>
-            <span data-target="#car-carousel" className="group relative cursor-pointer overflow-hidden h-[1.2em] flex flex-col">
-              <span className="block transition-transform duration-500 ease-in-out group-hover:-translate-y-full">colors</span>
-              <span className="block absolute top-full left-0 text-red-600 transition-transform duration-500 ease-in-out group-hover:-translate-y-full">colors</span>
-            </span>
-            <span data-target="#footer" className="group relative cursor-pointer overflow-hidden h-[1.2em] flex flex-col">
-              <span className="block transition-transform duration-500 ease-in-out group-hover:-translate-y-full">reviews</span>
-              <span className="block absolute top-full left-0 text-red-600 transition-transform duration-500 ease-in-out group-hover:-translate-y-full">reviews</span>
-            </span>
-            <span data-target="#footer" className="group relative cursor-pointer overflow-hidden h-[1.2em] flex flex-col">
-              <span className="block transition-transform duration-500 ease-in-out group-hover:-translate-y-full">contact</span>
-              <span className="block absolute top-full left-0 text-red-600 transition-transform duration-500 ease-in-out group-hover:-translate-y-full">contact</span>
-            </span>
-          </div>
-          <button className="bg-black/90 hover:bg-black px-4 md:px-6 py-2 md:py-3 rounded-2xl text-white font-semibold text-xs md:text-sm tracking-widest">
-            BOOK DEMO
-          </button>
-        </header>
+        <Navbar />
         <div id="hero" className="relative w-full h-[60vh] md:h-screen">
           <img src="/colorsCar/red.webp" alt="Ferrari 360 red" fetchpriority="high" decoding="async" className="w-full object-cover h-[50vh] md:h-[85vh] object-bottom" />
           <h1 className="absolute bottom-[2%] md:bottom-[2.5%] left-0 text-center text-[3vmax] md:text-[16vh] w-full font-bold font-uncial whitespace-normal md:whitespace-nowrap px-4">
