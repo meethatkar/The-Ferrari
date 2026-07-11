@@ -16,8 +16,10 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const mainRef = useRef(null);
-  const canvasRef = useRef(null);
+  const mainRef      = useRef(null);
+  const canvasRef    = useRef(null);
+  const navLinksRef  = useRef(null); // forwarded to Navbar → #nav-links div
+  const carouselRef  = useRef(null); // forwarded to CarouselSection via useImperativeHandle
 
   useEffect(() => {
     // --- STATE & GLOBALS ---
@@ -61,8 +63,9 @@ export default function App() {
     }
 
     function addPlanes() {
-      images = document.querySelectorAll("img");
-      wrapper = document.getElementById("carsoule-wrapper");
+      // Scope to <main> via ref — avoids global document.querySelectorAll
+      images = mainRef.current.querySelectorAll('img');
+      wrapper = carouselRef.current?.wrapperEl;
       if (!wrapper) return;
       wrapperBounds = wrapper.getBoundingClientRect();
 
@@ -223,13 +226,12 @@ export default function App() {
     }
 
     function initCarousel() {
-      const slides = document.querySelectorAll('.carsouel');
-      const colorBtns = document.querySelectorAll('#clr-btns span');
-      const prevBtn = document.querySelectorAll('.btns')[0];
-      const nextBtn = document.querySelectorAll('.btns')[1];
+      // All DOM nodes come from the forwarded ref — no document.querySelector
+      const { slides, colorBtns, prevBtn, nextBtn, wrapperEl } = carouselRef.current ?? {};
 
-      if (!slides.length || !colorBtns.length || !prevBtn || !nextBtn) return;
+      if (!slides?.length || !colorBtns?.length || !prevBtn || !nextBtn) return;
 
+      wrapper = wrapperEl; // keep module-level wrapper in sync
       let currentIndex = 0;
 
       function goToSlide(index) {
@@ -244,11 +246,11 @@ export default function App() {
         });
 
         colorBtns.forEach((btn, i) => {
-          if (i === currentIndex) {
-            gsap.to(btn, { scale: 1.2, duration: 0.3, ease: "power2.out" });
-          } else {
-            gsap.to(btn, { scale: 1, duration: 0.3, ease: "power2.out" });
-          }
+          gsap.to(btn, {
+            scale: i === currentIndex ? 1.2 : 1,
+            duration: 0.3,
+            ease: "power2.out"
+          });
         });
       }
 
@@ -257,17 +259,14 @@ export default function App() {
 
       nextBtn.addEventListener('click', onNextClick);
       prevBtn.addEventListener('click', onPrevClick);
-
-      colorBtns.forEach((btn, i) => {
-        btn.addEventListener('click', () => goToSlide(i));
-      });
+      colorBtns.forEach((btn, i) => btn.addEventListener('click', () => goToSlide(i)));
 
       goToSlide(0);
 
       return () => {
         nextBtn.removeEventListener('click', onNextClick);
         prevBtn.removeEventListener('click', onPrevClick);
-        // We skip removing colorBtns event listeners for simplicity in cleanup
+        colorBtns.forEach((btn, i) => btn.removeEventListener('click', () => goToSlide(i)));
       };
     }
 
@@ -278,27 +277,22 @@ export default function App() {
     }
 
     function initNavigation() {
-      const navLinks = document.querySelectorAll('#nav-links > span');
+      // Use forwarded ref to nav-links div — no document.querySelectorAll
+      const navLinks = navLinksRef.current
+        ? Array.from(navLinksRef.current.querySelectorAll('span[data-target]'))
+        : [];
 
       const onLinkClick = (e) => {
-        const link = e.currentTarget;
-        const target = link.getAttribute('data-target');
-        if (target) {
-          gsap.to(window, { duration: 1, scrollTo: target, ease: "power3.inOut" });
-          if (locoScroll) {
-            locoScroll.scrollTo(target);
-          }
+        const target = e.currentTarget.getAttribute('data-target');
+        if (target && locoScroll) {
+          locoScroll.scrollTo(target);
         }
       };
 
-      navLinks.forEach((link) => {
-        link.addEventListener('click', onLinkClick);
-      });
+      navLinks.forEach((link) => link.addEventListener('click', onLinkClick));
 
       return () => {
-        navLinks.forEach((link) => {
-          link.removeEventListener('click', onLinkClick);
-        });
+        navLinks.forEach((link) => link.removeEventListener('click', onLinkClick));
       };
     }
 
@@ -343,7 +337,7 @@ export default function App() {
     <>
       {!isLoaded && <Loader setIsLoaded={setIsLoaded} />}
       <main ref={mainRef} data-scroll-container className="w-full relative">
-        <Navbar />
+        <Navbar ref={navLinksRef} />
         <div id="hero" className="relative w-full h-[60vh] md:h-screen">
           <img src="/colorsCar/red.webp" alt="Ferrari 360 red" fetchpriority="high" decoding="async" className="w-full object-cover h-[50vh] md:h-[85vh] object-bottom" />
           <h1 className="absolute bottom-[2%] md:bottom-[2.5%] left-0 text-center text-[3vmax] md:text-[16vh] w-full font-bold font-uncial whitespace-normal md:whitespace-nowrap px-4">
@@ -356,7 +350,7 @@ export default function App() {
           </p>
         </div>
         <SpecsSection />
-        <CarouselSection />
+        <CarouselSection ref={carouselRef} />
         <footer id="footer" className="w-full h-[30vh]">
           <img src="/footer.webp" alt="The FERRARI 360" loading="lazy" decoding="async" className="w-full h-full object-cover" />
         </footer>

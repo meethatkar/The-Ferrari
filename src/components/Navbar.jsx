@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 
-const navLinks = [
+const navItems = [
   { label: 'specs',   target: '#specs' },
   { label: 'colors',  target: '#car-carousel' },
   { label: 'reviews', target: '#footer' },
   { label: 'contact', target: '#footer' },
 ];
 
-const Navbar = () => {
+// ref is forwarded to the #nav-links container so App.jsx can
+// query its children for scroll navigation without document.querySelector
+const Navbar = forwardRef(function Navbar(_, ref) {
   return (
     <header className="w-full px-6 md:px-12 py-4 md:py-6 absolute top-0 z-10 left-0 flex items-center justify-between font-elms">
       <h1 className="font-bebas text-3xl md:text-4xl tracking-wider text-gray-100">
         SUPE-CAR
       </h1>
 
-      <div id="nav-links" className="uppercase text-base font-semibold tracking-widest hidden md:flex gap-10 text-gray-800">
-        {navLinks.map(({ label, target }) => (
+      <div id="nav-links" ref={ref} className="uppercase text-base font-semibold tracking-widest hidden md:flex gap-10 text-gray-800">
+        {navItems.map(({ label, target }) => (
           <span
             key={label}
             data-target={target}
@@ -36,6 +38,6 @@ const Navbar = () => {
       </button>
     </header>
   );
-};
+});
 
 export default Navbar;
