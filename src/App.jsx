@@ -172,16 +172,23 @@ export default function App() {
         resetHover();
       };
 
+      // Reset hover when user scrolls — prevents effect freezing mid-scroll
+      const onWheel = () => {
+        resetHover();
+      };
+
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('touchstart', onTouchStart);
       window.addEventListener('touchmove', onTouchMove);
       window.addEventListener('touchend', onTouchEnd);
+      window.addEventListener('wheel', onWheel, { passive: true });
 
       return () => {
         window.removeEventListener('mousemove', onMouseMove);
         window.removeEventListener('touchstart', onTouchStart);
         window.removeEventListener('touchmove', onTouchMove);
         window.removeEventListener('touchend', onTouchEnd);
+        window.removeEventListener('wheel', onWheel);
       };
     }
 
