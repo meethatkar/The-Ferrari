@@ -271,7 +271,7 @@ export default function App() {
 
     function initNavigation() {
       const navLinks = document.querySelectorAll('#nav-links > span');
-      
+
       const onLinkClick = (e) => {
         const link = e.currentTarget;
         const target = link.getAttribute('data-target');
