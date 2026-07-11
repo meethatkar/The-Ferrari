@@ -13,6 +13,7 @@ const Loader = ({ setIsLoaded }) => {
   const loaderRef = useRef(null);
   const percentRef = useRef(null);
   const phaseRef = useRef(null);
+  const nameRef = useRef(null);
 
   useEffect(() => {
     const counter = { value: 0 };
@@ -45,6 +46,8 @@ const Loader = ({ setIsLoaded }) => {
     const tl = gsap.timeline({ onComplete: () => setIsLoaded(true) });
 
     tl.to(loaderPercent, { opacity: 0, duration: 0.5, ease: 'expo.out' })
+      .to(phaseRef, { opacity: 0, duration: 0.5, ease: 'expo.out' }, "<")
+      .to(nameRef, { opacity: 0, duration: 0.5, ease: 'expo.out' }, '<')
       .to(loader, { y: '-100%', ease: 'expo.out', duration: 1 });
   };
 
@@ -56,7 +59,7 @@ const Loader = ({ setIsLoaded }) => {
       <p ref={phaseRef} className="font-elms text-sm md:text-xl text-gray-700 tracking-widest text-center px-6">
         Forging the aluminum chassis...
       </p>
-      <h2 className="text-center w-full font-bold text-4xl font-uncial whitespace-normal md:whitespace-nowrap px-4">
+      <h2 ref={nameRef} className="text-center w-full font-bold text-4xl font-uncial whitespace-normal md:whitespace-nowrap px-4">
         THE FERRARI 360
       </h2>
     </div>

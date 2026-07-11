@@ -1,8 +1,8 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 
 const navItems = [
-  { label: 'specs',   target: '#specs' },
-  { label: 'colors',  target: '#car-carousel' },
+  { label: 'specs', target: '#specs' },
+  { label: 'colors', target: '#car-carousel' },
   { label: 'reviews', target: '#footer' },
   { label: 'contact', target: '#footer' },
 ];
@@ -23,10 +23,10 @@ const Navbar = forwardRef(function Navbar(_, ref) {
             data-target={target}
             className="group relative cursor-pointer overflow-hidden h-[1.2em] flex flex-col"
           >
-            <span className="block transition-transform duration-500 ease-in-out group-hover:-translate-y-full">
+            <span className="block transition-transform duration-500 ease-in-out group-hover:-translate-y-full font-bold">
               {label}
             </span>
-            <span className="block absolute top-full left-0 text-red-600 transition-transform duration-500 ease-in-out group-hover:-translate-y-full">
+            <span className="block absolute top-full left-0 text-red-600 transition-transform duration-500 ease-in-out group-hover:-translate-y-full font-bold">
               {label}
             </span>
           </span>

@@ -16,10 +16,10 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const mainRef      = useRef(null);
-  const canvasRef    = useRef(null);
-  const navLinksRef  = useRef(null); // forwarded to Navbar → #nav-links div
-  const carouselRef  = useRef(null); // forwarded to CarouselSection via useImperativeHandle
+  const mainRef = useRef(null);
+  const canvasRef = useRef(null);
+  const navLinksRef = useRef(null); // forwarded to Navbar → #nav-links div
+  const carouselRef = useRef(null); // forwarded to CarouselSection via useImperativeHandle
 
   useEffect(() => {
     // --- STATE & GLOBALS ---
@@ -345,14 +345,27 @@ export default function App() {
           </h1>
         </div>
         <div id="description" className="w-full text-center px-6 md:px-8 py-12 md:py-32">
-          <p className="w-11/12 md:w-8/12 mx-auto text-xl md:text-3xl font-elms text-gray-700 leading-relaxed font-light">
+          <p className="w-11/12 md:w-8/12 mx-auto text-xl md:text-3xl font-elms text-gray-700 leading-relaxed font-light overflow-hidden">
             The Ferrari 360, introduced in 1999, marked a revolutionary leap with its all-aluminum chassis. Powered by a mid-mounted 3.6-liter V8 engine producing 395 horsepower, this Pininfarina-designed masterpiece delivered thrilling performance and ushered the iconic brand into the 21st century.
           </p>
         </div>
         <SpecsSection />
         <CarouselSection ref={carouselRef} />
-        <footer id="footer" className="w-full h-[30vh]">
-          <img src="/footer.webp" alt="The FERRARI 360" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+        <footer id="footer" className="w-full">
+          <div className="w-full h-[30vh]">
+            <img src="/footer.webp" alt="The FERRARI 360" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full bg-black py-5 px-6 flex flex-col md:flex-row items-center justify-between gap-2">
+            <p className="font-bebas text-gray-400 tracking-widest text-sm md:text-base">
+              {new Date().getFullYear()} Ferrari 360
+            </p>
+            <p className="font-elms text-gray-500 text-xs md:text-sm text-center md:text-right">
+              Crafted by{' '}
+              <span className="text-white font-semibold tracking-wide">Meet Hatkar</span>
+              {' '}·{' '}
+              <span className="text-red-500 font-semibold tracking-widest uppercase text-xs">MotionGrid Digital Agency</span>
+            </p>
+          </div>
         </footer>
       </main>
       <canvas ref={canvasRef} id="canvas" className="fixed top-0 left-0 z-[-1] object-cover pointer-events-none"></canvas>

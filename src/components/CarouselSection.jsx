@@ -1,19 +1,19 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 
 const CarouselSection = forwardRef(function CarouselSection(_, ref) {
-  const wrapperRef   = useRef(null);
-  const prevBtnRef   = useRef(null);
-  const nextBtnRef   = useRef(null);
+  const wrapperRef = useRef(null);
+  const prevBtnRef = useRef(null);
+  const nextBtnRef = useRef(null);
   const colorBtnsRef = useRef(null);
-  const slidesRef    = useRef(null); // container whose children are the .carsouel slides
+  const slidesRef = useRef(null); // container whose children are the .carsouel slides
 
   // Expose DOM nodes to the parent (App.jsx) via ref
   useImperativeHandle(ref, () => ({
-    get wrapperEl()  { return wrapperRef.current; },
-    get slides()     { return slidesRef.current ? Array.from(slidesRef.current.children) : []; },
-    get prevBtn()    { return prevBtnRef.current; },
-    get nextBtn()    { return nextBtnRef.current; },
-    get colorBtns()  { return colorBtnsRef.current ? Array.from(colorBtnsRef.current.children) : []; },
+    get wrapperEl() { return wrapperRef.current; },
+    get slides() { return slidesRef.current ? Array.from(slidesRef.current.children) : []; },
+    get prevBtn() { return prevBtnRef.current; },
+    get nextBtn() { return nextBtnRef.current; },
+    get colorBtns() { return colorBtnsRef.current ? Array.from(colorBtnsRef.current.children) : []; },
   }));
 
   return (
@@ -25,19 +25,19 @@ const CarouselSection = forwardRef(function CarouselSection(_, ref) {
         {/* Slide track — ref gives us access to all .carsouel children */}
         <div ref={slidesRef} className="w-full h-full flex">
           <div className="carsouel w-full h-full shrink-0">
-            <img src="/colorsCar/red.webp"    alt="Ferrari 360 red"    loading="eager" decoding="async" className="w-full h-full object-contain" />
+            <img src="/colorsCar/red.webp" alt="Ferrari 360 red" loading="eager" decoding="async" className="w-full h-full object-contain" />
           </div>
           <div className="carsouel w-full h-full shrink-0">
-            <img src="/colorsCar/green.webp"  alt="Ferrari 360 green"  loading="lazy"  decoding="async" className="w-full h-full object-contain" />
+            <img src="/colorsCar/green.webp" alt="Ferrari 360 green" loading="lazy" decoding="async" className="w-full h-full object-contain" />
           </div>
           <div className="carsouel w-full h-full shrink-0">
-            <img src="/colorsCar/orange.webp" alt="Ferrari 360 orange" loading="lazy"  decoding="async" className="w-full h-full object-contain" />
+            <img src="/colorsCar/orange.webp" alt="Ferrari 360 orange" loading="lazy" decoding="async" className="w-full h-full object-contain" />
           </div>
           <div className="carsouel w-full h-full shrink-0">
-            <img src="/colorsCar/blue.webp"   alt="Ferrari 360 blue"   loading="lazy"  decoding="async" className="w-full h-full object-contain" />
+            <img src="/colorsCar/blue.webp" alt="Ferrari 360 blue" loading="lazy" decoding="async" className="w-full h-full object-contain" />
           </div>
           <div className="carsouel w-full h-full shrink-0">
-            <img src="/colorsCar/black.webp"  alt="Ferrari 360 black"  loading="lazy"  decoding="async" className="w-full h-full object-contain" />
+            <img src="/colorsCar/black.webp" alt="Ferrari 360 black" loading="lazy" decoding="async" className="w-full h-full object-contain" />
           </div>
         </div>
 
