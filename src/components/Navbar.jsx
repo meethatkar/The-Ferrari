@@ -1,10 +1,8 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef } from 'react';
 
 const navItems = [
   { label: 'specs', target: '#specs' },
   { label: 'colors', target: '#car-carousel' },
-  { label: 'reviews', target: '#footer' },
-  { label: 'contact', target: '#footer' },
 ];
 
 // ref is forwarded to the #nav-links container so App.jsx can
