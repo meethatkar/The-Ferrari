@@ -62,6 +62,7 @@ const Loader = ({ setIsLoaded }) => {
       <h2 ref={nameRef} className="text-center w-full font-bold text-4xl font-uncial whitespace-normal md:whitespace-nowrap px-4">
         THE FERRARI 360
       </h2>
+      <p className='text-base text-gray-400'>Ferrari Inspired Website Concept</p>
     </div>
   );
 };
